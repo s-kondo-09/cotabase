@@ -1,15 +1,13 @@
-演習問題の解答を共有するためのウェブアプリです。
+# Overview
+This is a web application for sharing solutions to exercises from textbooks and reference books.
 
-# 概要
-教科書・参考書の演習問題の解答を共有するWebサイトです。
-特に私が専攻している理工系の分野では，教科書に演習問題が出題されているにもかかわらず，その模範解答が省略されていることが多々あります。
-この傾向は，出版年が古い書籍であるほど高まります。
-しかし，これらの問題の多くは教育的で現代でも解く価値があると考えています。
-そこで，未来の読者に向けて，模範解答を投稿しあうというのが本Webサイトのコンセプトです。
-このWebサイトの運用によって，著者・読者・出版社の三者に利点を提供できます。
-メインユーザとして，物理学専攻の学生を想定していますが，将来的にはその他の学問分野にも対応する予定です。
+In science and engineering fields, textbooks often contain exercises without providing model solutions. This tendency is even more pronounced in older publications. However, many of these problems remain educational and worth solving today.
 
-# 使用技術
+The concept of this website is to allow users to submit and share model solutions for future readers. By operating this website, we aim to provide benefits to authors, readers, and publishers.
+
+The primary users are assumed to be physics students, but we plan to expand to other academic disciplines in the future.
+
+# Technologies Used
 - Django 4.1
 - PostgreSQL
 - Heroku
@@ -19,12 +17,12 @@
 - Bootstrap 4.3
 - MathJax
 
-# 今後の開発計画
-- 著者・読者・出版社の三者に利点を提供できるようなシステム
-  - 解答の外部共有
-- ユーザビリティの向上
-  - 解答のPDF書き出し機能
-  - 数式を含む手書きファイルのOCR機能
-- ユーザの投稿モチベーションを高めるようなシステム
-  - 解答数ランキング
-  - 称号システム
+# Future Development Plans
+- Developing a system that benefits authors, readers, and publishers
+  - External sharing of solutions
+- Enhancing usability
+  - PDF export feature for solutions
+  - OCR functionality for handwritten files containing equations
+- Increasing user motivation for posting
+  - Solution count rankings
+  - Title/achievement system
