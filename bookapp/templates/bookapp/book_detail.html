@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+
+{% block title %} 書籍詳細 {% endblock title %}
+
+{% block content %}
+<div class="p-4 m-4 bg-light border border-dark rounded">
+    <h2 class="text-dark">{{ object.title }}</h2>
+    <p>著者: {{ object.author }}</p>
+    <p>出版社: {{ object.publisher }}</p>
+    <p>{{ object.text }}</p>
+    <div class="border p-4 mb-2">
+      {% if answers %}
+        <h3>解答</h3>
+      {% endif %}
+
+      {% for answer in answers %}
+      <div>
+        <h3 class="h4">{{ answer.title }}</h3>
+        <div class="px-2">
+          <h6>{{ answer.page }}ページ 問{{ answer.problem_num }}</h6>
+          <span>(投稿ユーザ: {{ answer.user.username }})</span>
+          <br>
+          <br>
+          <p>{{ answer.answer }}</p>
+        </div>
+      </div>
+      {% endfor %}
+
+      {% if object.review_set.all %}
+        <h3>紹介文</h3>
+      {% endif %}
+
+      {% for review in object.review_set.all %}
+        <div>
+          <h3 class="h4">{{ review.title }}</h3>
+          <div class="px-2">
+            <span>(投稿ユーザ: {{ reivew.user.username }})</span>
+            <h6>評価: {{ review.rate }}点</h6>
+            <p>{{ review.text }}</p>
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+    <a href="{% url 'list-book' %}" class="btn btn-primary">一覧へ</a>
+    <a href="{% url 'review-book' object.pk %}" class="btn btn-primary">紹介文を書く</a>
+    <a href="{% url 'answer-book' object.pk %}" class="btn btn-primary">解答する</a>
+    <a href="{% url 'update-book' object.pk %}" class="btn btn-primary">編集する</a>
+    <a href="{% url 'delete-book' object.pk %}" class="btn btn-primary">削除する</a>
+    <h6 class="card-title">{{ object.category }}</h6>
+  </div>
+{% endblock content %}

@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+
+{% block title %}CotaBase{% endblock title %}
+{% comment %} {% block h1 %} ZemiBase {% endblock h1 %}」 {% endcomment %}
+
+{% block content %}
+    <div class="jumbotron">
+        <div class="container">
+            <h1 class="display-3">CotaBase</h1>
+            <h3>「できた！」を未来の読者へ<h3>
+            <p><a class="btn btn-primary btn-lg" href="accounts/signup" role="button">今すぐ始める &raquo;</a></p>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-9">
+            {% for item in object_list %}
+                <div class="p-4 m-4 bg-light border border-dark rounded">
+                    <h2 class="text-dark">{{ item.title }}</h2>
+                    <img src="{{ item.thumbnail.url }}" alt="book thumbnail" class="img-thumbnail" height=300 width=100 />   
+                    <h6>{{ item.category }}</h6>
+                    <a href="{% url 'detail-book' item.pk %}" class="btn btn-primary">詳細へ</a>
+                </div>
+            {% endfor %}
+        </div>
+        <div class="col-3">
+            <h2>評価順TOP2</h2>
+            {% for ranking_book in page_obj %}
+                <div class="p-4 m-4 bg-light border boder-success rounded">
+                    <h3 class="text-success h5">{{ ranking_book.title }}</h3>
+                    <img src="{{ ranking_book.thumbnail.url }}" class="img-thumbnail" height=300 width=100 />
+                    <h6>評価: 
+                        {% if ranking_book.avg_rating == None %}
+                            評価なし
+                        {% else %}
+                            {{ ranking_book.avg_rating|floatformat:2 }}点
+                        {% endif %}
+                    </h6>
+                    <a href="{% url 'detail-book' ranking_book.id %}">詳細を見る</a>
+                </div>
+            {% endfor %}
+            {% include "bookapp/components/pagination.html" %}
+        </div>
+    </div>
+{% endblock content %}

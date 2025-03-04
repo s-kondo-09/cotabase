@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+
+{% block title %} 書籍追加 {% endblock title %}
+{% block h1 %} 書籍追加 {% endblock h1 %}
+
+{% block content %}
+    <form method="post" enctype="multipart/form-data" class="p-4 m-4 bg-light border border-dark rounded form-group">
+        {% csrf_token %}
+        <label>書籍タイトル</label>
+        <input class="form-control" name="title">
+
+        <label>著者</label>
+        <input class="form-control" name="author">
+
+        <label>出版社</label>
+        <input class="form-control" name="publisher">
+
+        <label>カテゴリ</label>
+        <select class="form-control" name="category">
+            <option value="mechanics">力学</option>
+            <option value="electromagnetism">電磁気学</option>
+            <option value="statistical_mechanics">統計力学</option>
+            <option value="quantum_mechanics">量子力学</option>
+            <option value="other_physics">その他の物理学</option>
+            <option value="mathematics">数学</option>
+            <option value="other">その他</option>
+        </select>
+
+        <label>本の紹介</label>
+        <textarea class="form-control" name="text"></textarea>
+
+        <label>本の画像</label>
+        <input class="form-control" type="file" accept="image/*" name="thumbnail" rows="3"></textarea>
+
+        {% if form.errors %}
+            <span class="mb-2 small text-danger d-block text-start">入力内容を確認してください。</span>
+        {% endif %}
+
+        <input type="submit" class="btn btn-success mt-4" value="作成する">
+    </form>
+{% endblock content %}

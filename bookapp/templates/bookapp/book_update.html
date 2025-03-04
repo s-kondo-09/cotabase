@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+
+{% block title %} 書籍修正 {% endblock title %}
+
+{% block content %}
+    <form method="post" enctype="multipart/form-data" class="p-4 m-4 bg-light border border-dark rounded form-group">
+        {% csrf_token %}
+        <label>書籍タイトル</label>
+        <input class="form-control" name="title" value="{{ object.title }}">
+
+        <label>著者</label>
+        <input class="form-control" name="author" value="{{ object.author }}">
+
+        <label>出版社</label>
+        <input class="form-control" name="publisher" value="{{ object.publisher }}">
+
+        <label>カテゴリ</label>
+        <select class="form-control" name="category" value="{{ object.category }}">
+            <option value="mechanics">力学</option>
+            <option value="electromagnetism">電磁気学</option>
+            <option value="statistical_mechanics">統計力学</option>
+            <option value="quantum_mechanics">量子力学</option>
+            <option value="other_physics">その他の物理学</option>
+            <option value="mathematics">数学</option>
+            <option value="other">その他</option>
+        </select>
+
+        <label>本の紹介</label>
+        <textarea class="form-control" name="text">{{ object.text }}</textarea>
+
+        <label>本の画像</label>
+        <br>
+        {{ form.thumbnail }}
+        <br>
+        <input class="btn btn-success mt-4" type="submit" value="修正する">
+    </form>
+{% endblock content %}

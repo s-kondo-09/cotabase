@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+
+{% block title %} 書籍一覧 {% endblock title %}
+{% block h1 %} 書籍一覧 {% endblock h1 %}
+
+{% block content %}
+    <div class="album py-5 bg-light">
+        <div class="container">
+          <div class="row">
+            {% for item in object_list %}
+                <div class="col-md-4">
+                <div class="card mb-4 shadow-sm">
+                    <img src="{{ item.thumbnail.url }}" class="card-img-top" alt="Thumbnail" style="width: 100%; height: 300px; object-fit: contain;">
+                    <div class="card-body">
+                    <p class="card-text"></p>
+                    <div class="d-flex justify-content-between align-items-center">
+                        <div class="btn-group">
+                            <a href="{% url 'detail-book' item.pk %}" class="btn btn-primary">詳細へ</a>
+                        </div>
+                        <p>{{ item.title }}</p>
+                        <small class="text-muted">{{ item.category }}</small>
+                    </div>
+                    </div>
+                </div>
+                </div>
+            {% endfor %}
+        </div>
+      </div>
+    </div>
+    {% include "bookapp/components/pagination.html" %}
+  
+{% endblock content %}

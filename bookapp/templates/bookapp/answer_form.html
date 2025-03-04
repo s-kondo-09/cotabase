@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+
+{% block title %} 解答投稿 {% endblock title %}
+{% block h1 %} 解答投稿 {% endblock h1 %}
+
+{% block content %}
+    <form method="post" class="p-4 m-4 bg-light border border-success rounded form-group">
+        {% csrf_token %}
+        <label>書籍タイトル</label>
+        <input class="form-control" value="{{ book.title }}" readonly>
+
+        <label>ページ番号</label>
+        <input class="form-control" type="number" min="0" name="page">
+
+        <label>問題番号</label>
+        <input class="form-control" name="problem_num">
+
+        <label>解答タイトル</label>
+        <input class="form-control" name="title">
+
+        <label>解答</label>
+        <textarea class="form-control" name="answer" rows="3"></textarea>
+
+        {% if form.errors %}
+            <span class="mb-2 small text-danger d-block text-start">入力内容を確認してください。</span>
+        {% endif %}
+
+        <input type="hidden" name="book" value="{{ book.id }}">
+        <button type="submit" class="btn btn-success mt-4">投稿する</button>
+    </form>
+{% endblock content %}
